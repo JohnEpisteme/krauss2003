@@ -1,0 +1,164 @@
+---
+title: "Replication of 'The Psychology of the Monty Hall Problem' by Krauss and Wang (2003, Journal of Experimental Psychology)"
+author: "John Wilcox (wilcoxje@stanford.edu)"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: yes
+    toc_depth: 3
+    toc_float:
+      collapsed: false
+---
+
+<!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
+
+##Introduction
+
+My PhD research focuses on the question of how humans should assign probabilities in various contexts, all with the hope to inform practical interventions to improve human reasoning. Studies show that the so-called "Monty Hall problem" is one context where humans frequently assign incorrect probabilities. This is an important context since it tests one's capacity to reason properly about likelihoods, a capacity which is central to reasoning about many topics in scientific, medical and everyday settings. Consequently, this paper hopes to partially replicate a promising procedure (experiment 1) for inculcating correct reasoning about the Monty Hall problem.
+
+The procedure administers two questionnaires to participants in an experimental and a control condition. Participants in the control condition complete a questionnaire which asks for participants' responses to a standard version of the Monty Hall problem. Participants in the experimental condition complete a questionnaire about the "Guided intuition version" of the Monty Hall problem. Here, participants are guided to the correct solution to the Monty Hall problem with questions which encourage them: 1) to consider the problem from the fully informed perspective of Monty Hall, 2) to consider all possible arrangements of where the prize might be, 3) to count the frequencies with which a response strategy yields the optimal outcome and 4) to ignore the specifics of which particular door is opened by specifying merely that some door was opened and revealed a goat.
+
+
+
+##Methods
+
+Participants will be recruited via Amazon Mechanical Turk.
+
+###Power Analysis
+
+//Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.
+
+Power analysis will be provided after Monday's class :)
+
+
+###Planned Sample
+
+
+Planned sample size and/or termination rule, sampling frame, known demographics if any, preselection rules if any.
+
+The original study featured three groups of participants recruited from various German universities. There were 67 participants in the control group and 34 participants in the experimental condition (bearing in mind that another 34 participants were also included in an alternative experimental group which is not the focus of replication for this study).
+
+Some participants may have prior familiarity with the Monty Hall problem. Such participants could be omitted from the study with either pre-test or post-test approaches. 
+
+The pre-test approach would ask participants to somehow indicate whether they are familiar with the Monty Hall prior to receiving the (modified) instructions in appendix A or B. The limitation with this approach is that it introduces a potential source of error into the study: participants may indicate that they are not familiar with the problem merely so that they can receive the monetary reward of completing the task on Mechanical Turk, and their prior familiarity may bias the results.
+
+The post-test approach would ask participants to indicate whether they are familiar with the Monty Hall through the instructions in appendix A or B. In particular, the last item on the instructions asks participants to "Please also tell us if you were already familiar with this game... and knew what the correct answer should be". 
+
+The post-test approach can avoid the earlier source of bias, although it introduces additional complications. It can avoid the earlier approach if participants as told that their prior familiarity with this problem would not exclude them from receiving the monetary reward (even though their responses would not be analysed in the final dataset). However, this introduces two complexities. First, the study costs would be increased if we are also paying people whose data would not be used in the final analysis. However, it is difficult to determine the prevalence of familiarity with the problem without collecting the data itself. Second, it is more complicated to ensure that a suitable sample size is obtained. Since the budget is limited, I propose fixing a sample size based on the power analysis and the permissible budget, and then randomly assigning participants to the control and experimental conditions. Random assignment should somewhat distribute prior familiarity evenly among the two conditions. 
+
+
+###Materials
+
+Materials used for this study will include two versions of instructions: the control group instructions and the so-called "Guided Intuition instructions". These are reproduced in full in appendices A and B respectively. The guided intuition version incorporates the four features which Krauss and Wang believe facilitate good reasoning.
+
+A minor modification will be made to the materials: namely, that the request for justification will omit the statement that "You may use sketches, etc., to explain your answer" as the online testing environment would not provide for that capacity.
+
+
+###Procedure	
+
+Participants will be randomly assigned to the control and the experimental condition, where they will be instructed to complete the tasks outlined in the respective appendices via Amazon Mechanical Turk.
+
+Participants will be paid X amount for completion of the task, and they will have up to 2 hours to complete the task (although the expected value for the response rate is 5 minutes).
+
+
+###Analysis Plan
+
+Respondents who indicated prior familiarity will be excluded from the analysis.
+
+The original study reports various statistical measures, but the one of primary importance concerns the difference in correct justifications between the groups. To clarify, a participant would give a correct justification for their answer to the Monty Hall problem if and only if the both provided the correct probability of switching doors (2/3) and this probability assignment was, in the words of the original authors, "comprehensibly derived" (11). 
+
+Such assignments could be comprehensibly derived in two ways:
+
+1.Specifying the probabilities via use of Bayes's theorem (7)
+2.Counting the frequency with which the prize is one among various possible outcomes of the Monty Hall problem (two examples of which are provided on page 5)
+
+Correct justification will be coded and counted using NVivo (with which I have prior familiarity), thereby yielding distinct proportions of correct justifications between the experimental and control conditions.
+The difference between such proportions will be measured using Cohen's h, following the original study's protocol.
+
+
+Can also quote directly, though it is less often spelled out effectively for an analysis strategy section.  The key is to report an analysis strategy that is as close to the original - data cleaning rules, data exclusion rules, covariates, etc. - as possible.  
+
+**Clarify key analysis of interest here**  You can also pre-specify additional analyses you plan to do.
+
+###Differences from Original Study
+
+There are several salient difference between this replication study and the original:
+
+Sample demographics: .
+
+Sample size: .
+
+Pictorial justifications: In the original study, participants were allowed to visually represent their justifications for their responses in formats such as drawings of doors. For technical reasons, this study will not enable participants to draw such pictures, but it is expected that this should have a negligible impact on the proportion of correct justifications given or how they are coded.
+
+Experimental setting: the original study brought students into the laboratory to complete their tasks, unlike the current study in which participants may respond through Amazon Mechanical Turk. Consequently, respondent may be likely to give more attention to reasoning task since they are in an environment created for just that task, an environment which also includes the physical presence of an experimenter. Since Mechanical Turkers are left to their own devices, it is possible that the may rush through the task, thereby reducing the proportion of correct justification or the clarity with which justifications are articulated. There is no definitive evidence about how great a risk this poses, but suspect it would be negligible, at least for the purposes of testing an substantial effect of some size. 
+
+1D condition: In experiment one, the experimenters included an additional experimental condition contains only one of the four experimental conditions specified in this report's introduction: namely, that participants ignore the specifics of which particular door is opened by specifying merely that some door was opened and revealed a goat. This experimental condition is not included in this replication study for two reasons. First, this condition is not of primary importance to the original study and was merely included to further determine the relative impact of one aspect of the experimental condition used in this study. Second, and relatedly, given that this aspect only of secondary importance, the additional costs of implementing it are unjustified. Of course, this difference in experimental procedure is inconsequential for exploring the central research question: whether the experimental intervention results in a higher proportion of correct justifications when compared to the control group, regardless of the relative importance of components of that intervention.
+
+
+
+//Explicitly describe known differences in sample, setting, procedure, and analysis plan from original study.  The goal, of course, is to minimize those differences, but differences will inevitably occur.  Also, note whether such differences are anticipated to make a difference based on claims in the original article or subsequent published research on the conditions for obtaining the effect. 
+
+### Methods Addendum (Post Data Collection)
+
+You can comment this section out prior to final report with data collection.
+
+#### Actual Sample
+  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+
+#### Differences from pre-data collection methods plan
+  Any differences from what was described as the original plan,
+
+
+##Results
+
+
+### Data preparation
+
+Data preparation following the analysis plan.
+	
+```{r include=F}
+###Data Preparation
+
+####Load Relevant Libraries and Functions
+
+####Import data
+
+#### Data exclusion / filtering
+
+#### Prepare data for analysis - create columns etc.
+```
+
+### Confirmatory analysis
+
+The analyses as specified in the analysis plan.  
+
+*Side-by-side graph with original graph is ideal here*
+
+###Exploratory analyses
+
+Any follow-up analyses desired (not required).
+
+Link to the GitHub repository: https://github.com/JohnEpisteme/Saenenetal2015
+
+Link to the original paper: https://github.com/JohnEpisteme/Saenenetal2015/blob/master/original_paper/SaenenCogSci2015.pdf
+
+
+##Appendix A: Control group instructions
+
+![ Control group instructions]( images/controlinstructions.png)
+
+
+##Appendix B: Experimental group instructions
+
+![ Experimental group instructions]( images/experimentalinstructions.png)
+  
+
+## Discussion
+
+### Summary of Replication Attempt
+
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
+
+### Commentary
+
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
