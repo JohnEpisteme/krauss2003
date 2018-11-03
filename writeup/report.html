@@ -234,9 +234,12 @@ div.tocify {
 
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
+<div id="links" class="section level2">
+<h2>Links</h2>
 <p>Link to the GitHub repository: <a href="https://github.com/JohnEpisteme/krauss2003" class="uri">https://github.com/JohnEpisteme/krauss2003</a></p>
 <p>Link to the original paper: <a href="https://github.com/JohnEpisteme/krauss2003/blob/master/original_paper/krauss2003.pdf" class="uri">https://github.com/JohnEpisteme/krauss2003/blob/master/original_paper/krauss2003.pdf</a></p>
 <p>Link to the Qualtrics survey: <a href="https://stanforduniversity.qualtrics.com/jfe/form/SV_beA2tfPyXz83Otv" class="uri">https://stanforduniversity.qualtrics.com/jfe/form/SV_beA2tfPyXz83Otv</a></p>
+</div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>My PhD research focuses on the question of how humans should assign probabilities in various contexts, all with the hope to inform practical interventions to improve human reasoning. Studies show that the so-called “Monty Hall problem” is one context where humans frequently assign incorrect probabilities. This is an important context since it tests one’s capacity to reason properly about likelihoods, a capacity which is central to reasoning about many topics in scientific, medical and everyday settings. Consequently, this paper hopes to partially replicate a promising procedure (experiment 1) for inculcating correct reasoning about the Monty Hall problem.</p>
@@ -314,7 +317,7 @@ div.tocify {
 
 # tidy data, if neccesary
 
-### each row will have these variables: participant_id, condition, switch_response, switchwinrelfreq (respondent's answer about the proportion of the time that switching wins), staywinrelfreq (prespondent's answer about the proportion of the time that staying wins), givenjustification (the respondent's justification), correctjustification (whether it is correct, according to the coding), priorproblemfamiliarity, prioranswerfamiliarity
+# each row will have these variables: participant_id, condition, switch_response, switchwinrelfreq (respondent's answer about the proportion of the time that switching wins), staywinrelfreq (prespondent's answer about the proportion of the time that staying wins), givenjustification (the respondent's justification), correctjustification (whether it is correct, according to the coding), priorproblemfamiliarity, prioranswerfamiliarity
 
 #install packages with 
 
@@ -328,14 +331,17 @@ div.tocify {
 
 # combine data on switchs from experimental and control groups
 
-###dataedit$switchcombo &lt;- paste(dataedit$switchcontrol, dataedit$switchexperimental)
+### dataedit$switchcombo &lt;- paste(dataedit$switchcontrol, dataedit$switchexperimental)
+
+# recode variable where subjects indicate whether they had prior familiarity with the problem
+
 ###dataedit$familiarity &lt;- revalue(dataedit$Please.also.tell.us.if.you.were.already.familiar.with.this.game., c(&quot;I was familiar with this game&quot;=&quot;1&quot;, &quot;I was not familiar with this game&quot;=&quot;0&quot;))
 
-#remove missing values
+# remove missing values
 
 ###data1 &lt;- dataedit[-c(13)]
 
-# Filter participants who have prior answer familarity
+# Filter participants who have prior familarity
 
 ###datanofam &lt;- subset(data1, familiarity!=1)</code></pre>
 </div>

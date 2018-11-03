@@ -13,6 +13,8 @@ output:
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
 
+##Links
+
 Link to the GitHub repository: https://github.com/JohnEpisteme/krauss2003
 
 Link to the original paper: https://github.com/JohnEpisteme/krauss2003/blob/master/original_paper/krauss2003.pdf
@@ -130,7 +132,7 @@ Data preparation following the analysis plan.
 
 # tidy data, if neccesary
 
-### each row will have these variables: participant_id, condition, switch_response, switchwinrelfreq (respondent's answer about the proportion of the time that switching wins), staywinrelfreq (prespondent's answer about the proportion of the time that staying wins), givenjustification (the respondent's justification), correctjustification (whether it is correct, according to the coding), priorproblemfamiliarity, prioranswerfamiliarity
+# each row will have these variables: participant_id, condition, switch_response, switchwinrelfreq (respondent's answer about the proportion of the time that switching wins), staywinrelfreq (prespondent's answer about the proportion of the time that staying wins), givenjustification (the respondent's justification), correctjustification (whether it is correct, according to the coding), priorproblemfamiliarity, prioranswerfamiliarity
 
 #install packages with 
 
@@ -144,14 +146,17 @@ Data preparation following the analysis plan.
 
 # combine data on switchs from experimental and control groups
 
-###dataedit$switchcombo <- paste(dataedit$switchcontrol, dataedit$switchexperimental)
+### dataedit$switchcombo <- paste(dataedit$switchcontrol, dataedit$switchexperimental)
+
+# recode variable where subjects indicate whether they had prior familiarity with the problem
+
 ###dataedit$familiarity <- revalue(dataedit$Please.also.tell.us.if.you.were.already.familiar.with.this.game., c("I was familiar with this game"="1", "I was not familiar with this game"="0"))
 
-#remove missing values
+# remove missing values
 
 ###data1 <- dataedit[-c(13)]
 
-# Filter participants who have prior answer familarity
+# Filter participants who have prior familarity
 
 ###datanofam <- subset(data1, familiarity!=1)
 
