@@ -15,9 +15,9 @@ output:
 
 ##Links
 
-Link to the GitHub repository: https://github.com/JohnEpisteme/krauss2003
+Link to the GitHub repository: https://github.com/psych251/krauss2003
 
-Link to the original paper: https://github.com/JohnEpisteme/krauss2003/blob/master/original_paper/krauss2003.pdf
+Link to the original paper: https://github.com/psych251/krauss2003/blob/master/original_paper/krauss2003.pdf
 
 Link to the Qualtrics survey: https://stanforduniversity.qualtrics.com/jfe/form/SV_beA2tfPyXz83Otv
 
@@ -35,9 +35,12 @@ Participants will be recruited via Amazon Mechanical Turk.
 
 ###Power Analysis
 
-//Original effect size, power analysis for samples to achieve 80%, 90%, 95% power to detect that effect size.  Considerations of feasibility for selecting planned sample size.
 
-Power analysis will be provided after Monday's class :)
+For two groups with proportions of 3% and 38%:
+
+38 units are needed to achieve 80% power (with units evenly allocated between groups)
+46 units are needed to achieve 90% power (with units evenly allocated between groups)
+58 units are needed to achieve 95% power (with units evenly allocated between groups)
 
 
 ###Planned Sample
@@ -47,15 +50,17 @@ Planned sample size and/or termination rule, sampling frame, known demographics 
 
 The original study featured three groups of participants recruited from various German universities. There were 67 participants in the control group and 34 participants in the experimental condition (bearing in mind that another 34 participants were also included in an alternative experimental group which is not the focus of replication for this study).
 
-To ensure that the replication study is as close to the original study as possible, participants will be selected so as to inlude only people who are currently students at universities.
+To ensure that the replication study is close to the original study, participants will be selected so as to inlude only people who have graduate from high school.
 
-Some participants may have prior familiarity with the Monty Hall problem. Such participants <span style="color:red">will</span> be omitted from the study with pre-test and post-test approaches. 
+Some participants may have prior familiarity with the Monty Hall problem. Such participants will be omitted from the study with pre-test and post-test approaches. 
 
 The pre-test approach will ask participants to indicate whether they are familiar with the Monty Hall problem prior to receiving the (modified) instructions in appendix A or B. The limitation with this approach is that it introduces a potential source of error into the study: participants may indicate that they are not familiar with the problem merely so that they can receive the monetary reward of completing the task on Mechanical Turk, and their prior familiarity may bias the results. In an attempt to control for this, participants will be asked a list of questions so that they are less likely to tell which question could prevent their participation on the task.
 
 The post-test approach asks participants to indicate whether they are familiar with the Monty Hall through the instructions in appendix A or B. In particular, the last item on the instructions asks participants to "Please also tell us if you were already familiar with this game... and knew what the correct answer should be". 
 
-The post-test approach can avoid the earlier source of bias, although it introduces additional complications. It can avoid the earlier approach if participants are told that their prior familiarity with this problem would not exclude them from receiving the monetary reward (even though their responses would not be analysed in the final dataset). However, this introduces two complexities. First, the study costs would be increased if we are also paying people whose data would not be used in the final analysis. Second, it is more complicated to ensure that a suitable sample size is obtained. Since the budget is limited, I propose fixing a sample size based on the power analysis and the permissible budget, and then randomly assigning participants to the control and experimental conditions. Random assignment should somewhat distribute prior familiarity evenly among the two conditions. 
+The post-test approach can avoid the earlier source of bias.
+
+A power analysis suggests that a sample of 38 people is necessary to detect and effect. A sample of 50 people has been planned to accommodate the possibility that some participants may have prior problem familiarity or may make errors which require them to be excluded from the final data analysis.
 
 
 ###Materials
@@ -83,9 +88,9 @@ Such assignments could be comprehensibly derived in two ways:
 1.Specifying the probabilities via use of Bayes's theorem (7)
 2.Counting the frequency with which the prize is one among various possible outcomes of the Monty Hall problem (two examples of which are provided on page 5)
 
-Correct justification will be coded and counted using NVivo (with which I have prior familiarity), thereby yielding distinct proportions of correct justifications for the experimental and control conditions.
+The justifications will be extracted to a separate Excel file where justifications will be coded as correct or incorrect, all while being blind to which justifications are from the experimental or control conditions. The coding will then be transferred back to the main analysis dataframe. This may yield distinct proportions of correct justifications for the experimental and control conditions.
 
-The difference between such proportions will be measured using Cohen's h, following the original study's protocol.
+Following the original study's protocol, the difference between such proportions will be measured using Cohen's h and statistical significance will be calculated using Fisher's exact test.
 
 
 ###Differences from Original Study
@@ -93,13 +98,11 @@ The difference between such proportions will be measured using Cohen's h, follow
 There are several salient differences between this replication study and the original experiment:
 
 
-Sample size: .
+Sample size: 
 
 Pictorial justifications: In the original study, participants were allowed to visually represent their justifications for their responses in various formats, such as drawings of doors. For technical reasons, this study will not enable participants to draw such pictures, but it is expected that this should have a negligible impact on the proportion of correct justifications given or how they are coded.
 
 Experimental setting: The original study brought students into the laboratory to complete their tasks, unlike the current study in which participants may respond through Amazon Mechanical Turk. Consequently, respondents may have been more likely to give more attention to the reasoning task since they are in an environment created for that sole purpose and the environment also includes the physical presence of an experimenter. In contrast, since Mechanical Turkers are left to their own devices, it is possible that the may rush through the task, thereby reducing the proportion of correct justifications or the clarity with which justifications are articulated. There is no definitive evidence about how great a risk this poses, but suspect it would be negligible, at least for the purposes of testing a substantial effect of some size. 
-
-1D condition: In the original experiment, the experimenters included an additional experimental condition containing only one of the four experimental conditions specified in this report's introduction: namely, that participants ignore the specifics of which particular door is opened by specifying merely that some door was opened and revealed a goat. This experimental condition is not included in this replication study for two reasons. First, this condition is not of primary importance to the original study and was merely included to further determine the relative impact of one aspect of the experimental condition used in this study. Second, and relatedly, given that this aspect only of secondary importance, the additional costs of implementing it are unjustified. Of course, this difference in experimental procedure is inconsequential for exploring the central research question: whether the experimental intervention results in a higher proportion of correct justifications when compared to the control group, regardless of the relative importance of the components of that intervention.
 
 Coding of correct justifications: Unlike the previous study, a different coder (the present author) will code the justifications as correct or incorrect according to the criteria specified in the original paper. The results could be influenced by imperfect inter-rater reliability. However, it seems to me that the criteria for what qualifies as a correct justification are fairly straight-forward, comprehensible and uncontroversial, and so I suspect that the coders in the original and replication studies would likely have high or perfect agreement.
 
@@ -124,41 +127,41 @@ Data preparation following the analysis plan.
 
 	
 ```{r include=T}
-###Data Preparation
-
-#load data
-
-###dataedit <- read.csv("C:/Users/john-/krauss2003/data/dataedit.csv", comment.char="#")
-
-# tidy data, if neccesary
-
-# each row will have these variables: participant_id, condition, switch_response, switchwinrelfreq (respondent's answer about the proportion of the time that switching wins), staywinrelfreq (prespondent's answer about the proportion of the time that staying wins), givenjustification (the respondent's justification), correctjustification (whether it is correct, according to the coding), priorproblemfamiliarity, prioranswerfamiliarity
-
-#install packages with 
-
-###install.packages("plyr")
-###library("plyr")
-
-#recode varirables to make data on switches for both the experimental and the control group
-
-###dataedit$switchexperimental <- revalue(dataedit$What.should.the.contestant.therefore.do., c("switch"="1", "stay"="0"))
-###dataedit$switchcontrol <- revalue(dataedit$After.Monty.Hall.has.opened.a..goat.door...what.should.you.do., c("switch"="1", "stay"="0"))
-
-# combine data on switchs from experimental and control groups
-
-### dataedit$switchcombo <- paste(dataedit$switchcontrol, dataedit$switchexperimental)
-
-# recode variable where subjects indicate whether they had prior familiarity with the problem
-
-###dataedit$familiarity <- revalue(dataedit$Please.also.tell.us.if.you.were.already.familiar.with.this.game., c("I was familiar with this game"="1", "I was not familiar with this game"="0"))
-
-# remove missing values
-
-###data1 <- dataedit[-c(13)]
-
-# Filter participants who have prior familarity
-
-###datanofam <- subset(data1, familiarity!=1)
+# ###Data Preparation
+# 
+# #load data
+# 
+# dataedit <- read.csv("C:/Users/john-/krauss2003/data/dataedit.csv", comment.char="#")
+# 
+# #tidy data, if neccesary
+# 
+# #install packages with 
+# 
+# install.packages("tidyverse")
+# library("tidyverse")
+# 
+# 
+# # rename columns 
+# 
+# data_renamed = dataedit %>% rename(
+#   experimental_switch = What.should.the.contestant.therefore.do.,
+#   control_switch = After.Monty.Hall.has.opened.a..goat.door...what.should.you.do.,
+#   familiarity = Please.also.tell.us.if.you.were.already.familiar.with.this.game.
+# ) 
+# 
+# #remove missing values
+# 
+# data_gathered = data_renamed %>% gather(condition, switch, c(experimental_switch, control_switch)) %>%
+#   filter(switch!="") %>%
+#   filter(!is.na(switch))
+# 
+# #recode variables
+# 
+# data_recoded = data_gathered %>%
+#   mutate(
+#     condition = revalue(condition, c("experimental_switch"="experimental", "control_switch"="control"))
+#   )
+                               
 
 
 ```
@@ -167,23 +170,38 @@ Data preparation following the analysis plan.
 
 
 ```{r include=T}
-###Analysis
+# ###Analysis
+# 
+# 
+# #calculate and see propotions
+# 
+# table <- with(
+#   data_recoded,
+#   table(switch, condition))
+# 
+# 
+# ###table 
+# 
+# #Cohen's h test and Fisher's exact test
+# 
+# install.packages("pwr")
+# library(pwr)
+# 
+# h <- ES.h(
+#   (table["switch", "control"]/ 
+#      (table["switch", "control"]+ table["stay", "control"])),
+#   (table["switch", "experimental"]/
+#       (table["switch", "experimental"]+ table["stay", "experimental"]))
+# )
+#   
+# test <-  fisher.test(as.matrix(table))
+# 
+# table
+# h
+# test
 
+# ggplot(data = data_recoded, aes(x = condition)) + geom_bar(aes(fill = switch), position = "dodge") + labs(x = "Condition")
 
-#calculate and see propotions
-
-###table <- table(datanofam$switchcombo, datanofam$expgroup)
-###table
-
-#Cohen's h test
-
-###install.packages("pwr")
-###library(pwr)
-###h <- ES.h((1/6), (0/5))
-
-#See Cohen's h test (which is .84)
-
-###h
 
 ```
 
@@ -222,4 +240,30 @@ Add open-ended commentary (if any) reflecting (a) insights from follow-up explor
 ##Appendix B: Experimental group instructions
 
 ![ Experimental group instructions]( images/experimentalinstructions.png)
+  
+##Appendix C: Email to Authors
+  
+  Secretary's email: brigitte.eichenseher@ur.de
+  Max Planck Institute email: krauss@mpib-berlin.mpg.de
+  
+  
+Dear Professor Stefan Krauss,
+
+I'm writing to share a mock-up replication of experiment 1 in Krauss & Wang (2003) as part of a graduate course, to see if you have any comments or concerns that you'd like to share.
+
+Please feel no obligation to respond to this message; I know time is tight. I just wanted to be sure you had a chance to provide any comments if you wanted to and that you were aware that I am carrying out this study. Due to the quick timeframe of our course, if you are able to provide feedback, it would be wonderful to receive it by the 26th of November, so that I can incorporate your comments into the design and pre-registration.
+
+Here's a link to my paradigm: https://stanforduniversity.qualtrics.com/jfe/form/SV_beA2tfPyXz83Otv. Any insights you have into details that differ from your own study would be much appreciated. I will be piloting this paradigm in the next week, so I may also change some small details after collecting those data.
+
+Your findings suggest that you have an interesting and pontentially sucessful approach to improving reasoning in the Monty Hall problem, so I chose to do a direct replication of your study as part of a graduate course, Psych 251, "Laboratory Methods in Experimental Psychology" at Stanford. I will be replicating your experiment on Amazon Mechanical Turk (mturk.com) with participants with a Bachelors degree. I know this is a deviation from the original population you tested, and I will note this sample decision prominently in the writeup. As I am attempting as faithful a replication as possible, any advice or insights on experimental design that I might not gather from the original article would be very appreciated.
+
+In addition, for my project, I need to preregister a "key statistical test" from your manuscript. The idea is that this is the test that most closely corresponds to the primary hypothesis. For your experiment, I chose to preregister Fisher's exact test, accompanied with Cohen's h for measuring the difference between proportions of correct justifications. Please let me know if you think this is appropriate or if there is another test that you would consider closer to being the key one for your interpretation.
+
+Thanks again,
+
+John Wilcox
+
+PS: If you have any questions or concerns about this course project, feel free to contact me or the instructor, Michael Frank (mcfrank@stanford.edu).
+  
+  
   

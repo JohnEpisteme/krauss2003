@@ -1,0 +1,83 @@
+<QuestionForm xmlns="http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2017-11-06/QuestionForm.xsd">
+  <Overview>
+    <Title>Qualification to play a short game</Title>
+    <Text>
+      This test offers a series of questions which might enable you to qualify for a HIT where you give your opinion on a game.
+    </Text>
+  </Overview>
+<Question>
+    <QuestionIdentifier>lefthanded</QuestionIdentifier>
+    <DisplayName>Writing hand</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Text>
+        Which hand do you write with primarily?
+      </Text>
+    </QuestionContent>
+     <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>lefthand</SelectionIdentifier>
+            <Text>Left hand</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>righthand</SelectionIdentifier>
+            <Text>Right hand</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+  <Question>
+    <QuestionIdentifier>familiarity</QuestionIdentifier>
+    <DisplayName>Familiarity with the Monty Hall problem</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Text>
+        Are you familiar with the Monty Hall problem, a scenario where you choose one of three doors and then Monty Hall opens one of the other doors?
+      </Text>
+    </QuestionContent>
+     <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>yes</SelectionIdentifier>
+            <Text>I am familiar with the problem</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>no</SelectionIdentifier>
+            <Text>I am not familiar with the problem</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+  <Question>
+    <QuestionIdentifier>wasoncard</QuestionIdentifier>
+    <DisplayName>Wason card task</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Text>
+        Have you heard of the Wason card task where you have to flip cards to test a statement?
+      </Text>
+    </QuestionContent>
+     <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>yes</SelectionIdentifier>
+            <Text>I have heard of the Wason card task</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>no</SelectionIdentifier>
+            <Text>I have not heard of the Wason card task</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+</QuestionForm>
