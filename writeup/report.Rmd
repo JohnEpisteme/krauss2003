@@ -12,6 +12,16 @@ output:
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
+##Issues to be resolved before the final data collection
+
+A power analysis suggests that the study requires a total of 38 participants evenly assigned to the two groups (19 per group).
+
+However, two issues concerning sampling would need to be addressed before the final data collection:
+
+- Prior problem familiarity: the MTurk HIT had a custom qualification to disqualify workers who had prior familiarity with the HIT. One of the four respondents indicated prior problem familiarity at the end of the survey but not the beginning. Perhaps this was an error and they were not familiar with the problem because they still gave an incorrect answer about what to do in the Monty Hall problem. Regardless, it is possible that some may lie on the qualification or not realise that they have encountered the problem until the end. I am not sure whether it would be good to over-sample and select the first 18 valid responses for analysis in each condition.
+
+- Randomising and even number of participants: the randomising algorithm for pilot B assigned 3 participants to the control group and 1 to the experimental group. I had selected "evenly present elements", but this still did not prevent the problem. This might have been because Stefan Krauss (the original experimenter) completed the survey over night during pilot B (he didn't have time to look at it earlier). In any case, there's the risk that the randomising procedure might not assign exactly 19 units to each of the conditions. Again, over-sampling might be an appropriate strategy here.
+
 
 ##Links
 
@@ -38,29 +48,30 @@ Participants will be recruited via Amazon Mechanical Turk.
 
 For two groups with proportions of 3% and 38%:
 
-38 units are needed to achieve 80% power (with units evenly allocated between groups)
-46 units are needed to achieve 90% power (with units evenly allocated between groups)
-58 units are needed to achieve 95% power (with units evenly allocated between groups)
+- 38 units are needed to achieve 80% power (with units evenly allocated between groups)
+
+- 46 units are needed to achieve 90% power (with units evenly allocated between groups)
+
+- 58 units are needed to achieve 95% power (with units evenly allocated between groups)
 
 
 ###Planned Sample
 
 
-Planned sample size and/or termination rule, sampling frame, known demographics if any, preselection rules if any.
 
 The original study featured three groups of participants recruited from various German universities. There were 67 participants in the control group and 34 participants in the experimental condition (bearing in mind that another 34 participants were also included in an alternative experimental group which is not the focus of replication for this study).
 
-To ensure that the replication study is close to the original study, participants will be selected so as to inlude only people who have graduate from high school.
+To ensure that the replication study is close to the original study, participants will be selected so as to inlude only people who have graduated from high school.
 
 Some participants may have prior familiarity with the Monty Hall problem. Such participants will be omitted from the study with pre-test and post-test approaches. 
 
 The pre-test approach will ask participants to indicate whether they are familiar with the Monty Hall problem prior to receiving the (modified) instructions in appendix A or B. The limitation with this approach is that it introduces a potential source of error into the study: participants may indicate that they are not familiar with the problem merely so that they can receive the monetary reward of completing the task on Mechanical Turk, and their prior familiarity may bias the results. In an attempt to control for this, participants will be asked a list of questions so that they are less likely to tell which question could prevent their participation on the task.
 
-The post-test approach asks participants to indicate whether they are familiar with the Monty Hall through the instructions in appendix A or B. In particular, the last item on the instructions asks participants to "Please also tell us if you were already familiar with this game... and knew what the correct answer should be". 
+The post-test approach asks participants to indicate whether they are familiar with the Monty Hall through the instructions in appendix A or B. In particular, the last item on the instructions asks participants to "Please also tell us if you were already familiar with this game... and knew what the correct answer should be" 
 
 The post-test approach can avoid the earlier source of bias.
 
-A power analysis suggests that a sample of 38 people is necessary to detect and effect. A sample of 50 people has been planned to accommodate the possibility that some participants may have prior problem familiarity or may make errors which require them to be excluded from the final data analysis.
+A power analysis suggests that a sample of 38 people is necessary to detect the original effect with 80% power. A sample of 50 people has been planned to accommodate the possibility that some participants may have prior problem familiarity or may make errors which require them to be excluded from the final data analysis.
 
 
 ###Materials
@@ -242,28 +253,6 @@ Add open-ended commentary (if any) reflecting (a) insights from follow-up explor
 ![ Experimental group instructions]( images/experimentalinstructions.png)
   
 ##Appendix C: Email to Authors
-  
-  Secretary's email: brigitte.eichenseher@ur.de
-  Max Planck Institute email: krauss@mpib-berlin.mpg.de
-  
-  
-Dear Professor Stefan Krauss,
-
-I'm writing to share a mock-up replication of experiment 1 in Krauss & Wang (2003) as part of a graduate course, to see if you have any comments or concerns that you'd like to share.
-
-Please feel no obligation to respond to this message; I know time is tight. I just wanted to be sure you had a chance to provide any comments if you wanted to and that you were aware that I am carrying out this study. Due to the quick timeframe of our course, if you are able to provide feedback, it would be wonderful to receive it by the 26th of November, so that I can incorporate your comments into the design and pre-registration.
-
-Here's a link to my paradigm: https://stanforduniversity.qualtrics.com/jfe/form/SV_beA2tfPyXz83Otv. Any insights you have into details that differ from your own study would be much appreciated. I will be piloting this paradigm in the next week, so I may also change some small details after collecting those data.
-
-Your findings suggest that you have an interesting and pontentially sucessful approach to improving reasoning in the Monty Hall problem, so I chose to do a direct replication of your study as part of a graduate course, Psych 251, "Laboratory Methods in Experimental Psychology" at Stanford. I will be replicating your experiment on Amazon Mechanical Turk (mturk.com) with participants with a Bachelors degree. I know this is a deviation from the original population you tested, and I will note this sample decision prominently in the writeup. As I am attempting as faithful a replication as possible, any advice or insights on experimental design that I might not gather from the original article would be very appreciated.
-
-In addition, for my project, I need to preregister a "key statistical test" from your manuscript. The idea is that this is the test that most closely corresponds to the primary hypothesis. For your experiment, I chose to preregister Fisher's exact test, accompanied with Cohen's h for measuring the difference between proportions of correct justifications. Please let me know if you think this is appropriate or if there is another test that you would consider closer to being the key one for your interpretation.
-
-Thanks again,
-
-John Wilcox
-
-PS: If you have any questions or concerns about this course project, feel free to contact me or the instructor, Michael Frank (mcfrank@stanford.edu).
   
   
   
