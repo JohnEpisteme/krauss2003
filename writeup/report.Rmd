@@ -12,16 +12,6 @@ output:
 
 <!-- Replication reports should all use this template to standardize reporting across projects.  These reports will be public supplementary materials that accompany the summary report(s) of the aggregate results. -->
 
-##Issues to be resolved before the final data collection
-
-A power analysis suggests that the study requires a total of 38 participants evenly assigned to the two groups (19 per group).
-
-However, two issues concerning sampling would need to be addressed before the final data collection:
-
-- Prior problem familiarity: the MTurk HIT had a custom qualification to disqualify workers who had prior familiarity with the HIT. One of the four respondents indicated prior problem familiarity at the end of the survey but not the beginning. Perhaps this was an error and they were not familiar with the problem because they still gave an incorrect answer about what to do in the Monty Hall problem. Regardless, it is possible that some may lie on the qualification or not realise that they have encountered the problem until the end. I am not sure whether it would be good to over-sample and select the first 18 valid responses for analysis in each condition.
-
-- Randomising and even number of participants: the randomising algorithm for pilot B assigned 3 participants to the control group and 1 to the experimental group. I had selected "evenly present elements", but this still did not prevent the problem. This might have been because Stefan Krauss (the original experimenter) completed the survey over night during pilot B (he didn't have time to look at it earlier). In any case, there's the risk that the randomising procedure might not assign exactly 19 units to each of the conditions. Again, over-sampling might be an appropriate strategy here.
-
 
 ##Links
 
@@ -78,25 +68,30 @@ A power analysis suggests that a sample of 38 people is necessary to detect the 
 
 Materials used for this study will include two versions of instructions: the control group instructions and the so-called "Guided Intuition instructions". These are reproduced in full in appendices A and B respectively. The guided intuition version incorporates the four features which Krauss and Wang believe facilitate good reasoning.
 
-A minor modification will be made to the materials: namely, that the request for justification will omit the statement that "You may use sketches, etc., to explain your answer" as the online testing environment would not provide for that capacity.
+Two minor modifications will be made to the materials:
+
+- First, the request for justification will omit the statement that "You may use sketches, etc., to explain your answer" as the online testing environment would not provide for that capacity.
+
+- Second, an attention check will be included, asking participants how many doors are in the problem.
 
 
 ###Procedure	
 
 Participants will be randomly assigned to the control and the experimental condition, where they will be instructed to complete the tasks outlined in the respective appendices via Amazon Mechanical Turk.
 
-Participants will be paid X amount for completion of the task, and they will have up to 2 hours to complete the task (although I expect responses to take about 5 minutes on average).
+Participants will be paid $0.97 amount for completion of the task, and they will have up to 3 hours to complete the task (although I expect responses to take about 8 minutes on average).
 
 
 ###Analysis Plan
 
-Respondents who indicated prior familiarity will be excluded from the analysis.
+Respondents who indicated prior familiarity and who failed the attention check will be excluded from the analysis.
 
-The original study reports various statistical measures, but the one of primary importance concerns the difference in correct justifications between the groups. To clarify, a participant would give a correct justification for their answer to the Monty Hall problem if and only if they both provided the correct probability of switching doors (2/3) and this probability assignment was, in the words of the original authors, "comprehensibly derived" (11). 
+The original study reports various statistical measures, but the one of primary importance concerns the difference in correct justifications between the groups. To clarify, a participant would give a correct justification for their answer to the Monty Hall problem when they both provided the correct probability of switching doors (2/3) and this probability assignment was, in the words of the original authors, "comprehensibly derived" (11). 
 
 Such assignments could be comprehensibly derived in two ways:
 
 1.Specifying the probabilities via use of Bayes's theorem (7)
+
 2.Counting the frequency with which the prize is one among various possible outcomes of the Monty Hall problem (two examples of which are provided on page 5)
 
 The justifications will be extracted to a separate Excel file where justifications will be coded as correct or incorrect, all while being blind to which justifications are from the experimental or control conditions. The coding will then be transferred back to the main analysis dataframe. This may yield distinct proportions of correct justifications for the experimental and control conditions.
@@ -109,8 +104,6 @@ Following the original study's protocol, the difference between such proportions
 There are several salient differences between this replication study and the original experiment:
 
 
-Sample size: 
-
 Pictorial justifications: In the original study, participants were allowed to visually represent their justifications for their responses in various formats, such as drawings of doors. For technical reasons, this study will not enable participants to draw such pictures, but it is expected that this should have a negligible impact on the proportion of correct justifications given or how they are coded.
 
 Experimental setting: The original study brought students into the laboratory to complete their tasks, unlike the current study in which participants may respond through Amazon Mechanical Turk. Consequently, respondents may have been more likely to give more attention to the reasoning task since they are in an environment created for that sole purpose and the environment also includes the physical presence of an experimenter. In contrast, since Mechanical Turkers are left to their own devices, it is possible that the may rush through the task, thereby reducing the proportion of correct justifications or the clarity with which justifications are articulated. There is no definitive evidence about how great a risk this poses, but suspect it would be negligible, at least for the purposes of testing a substantial effect of some size. 
@@ -120,13 +113,13 @@ Coding of correct justifications: Unlike the previous study, a different coder (
 
 ### Methods Addendum (Post Data Collection)
 
-You can comment this section out prior to final report with data collection.
+<!-- You can comment this section out prior to final report with data collection. -->
 
-#### Actual Sample
-  Sample size, demographics, data exclusions based on rules spelled out in analysis plan
+<!-- #### Actual Sample -->
+<!--   Sample size, demographics, data exclusions based on rules spelled out in analysis plan -->
 
-#### Differences from pre-data collection methods plan
-  Any differences from what was described as the original plan,
+<!-- #### Differences from pre-data collection methods plan -->
+<!--   Any differences from what was described as the original plan, -->
 
 
 ##Results
@@ -138,40 +131,46 @@ Data preparation following the analysis plan.
 
 	
 ```{r include=T}
-# ###Data Preparation
-# 
-# #load data
-# 
-# dataedit <- read.csv("C:/Users/john-/krauss2003/data/dataedit.csv", comment.char="#")
-# 
-# #tidy data, if neccesary
-# 
-# #install packages with 
-# 
+###Data Preparation
+
+#load data
+
+dataedit <- read.csv("C:/Users/john-/krauss2003/data/pilotBanon.csv", comment.char="#")
+
+#tidy data, if neccesary
+
+#install packages with
+
 # install.packages("tidyverse")
-# library("tidyverse")
-# 
-# 
-# # rename columns 
-# 
-# data_renamed = dataedit %>% rename(
-#   experimental_switch = What.should.the.contestant.therefore.do.,
-#   control_switch = After.Monty.Hall.has.opened.a..goat.door...what.should.you.do.,
-#   familiarity = Please.also.tell.us.if.you.were.already.familiar.with.this.game.
-# ) 
-# 
-# #remove missing values
-# 
-# data_gathered = data_renamed %>% gather(condition, switch, c(experimental_switch, control_switch)) %>%
-#   filter(switch!="") %>%
-#   filter(!is.na(switch))
-# 
-# #recode variables
-# 
-# data_recoded = data_gathered %>%
-#   mutate(
-#     condition = revalue(condition, c("experimental_switch"="experimental", "control_switch"="control"))
-#   )
+library("tidyverse")
+library("plyr")
+
+# rename columns
+
+data_renamed = dataedit %>% dplyr::rename(
+  experimental_switch = What.should.the.contestant.therefore.do.,
+  control_switch = After.Monty.Hall.has.opened.a..goat.door...what.should.you.do.,
+  familiarity = Please.also.tell.us.if.you.were.already.familiar.with.this.game.,
+  attentioncheck = In.the.earlier.scenario..how.many.doors.were.there.in.total..including.either.opened.or.unopened.doors..)
+
+
+
+#remove missing values and people who failed the attention check or were familiar with the game
+
+data_gathered = data_renamed %>% gather(condition, switch, c(experimental_switch, control_switch)) %>%
+  filter(switch!="") %>%
+  filter(!is.na(switch)) %>%
+  filter(attentioncheck =="3 doors in total") %>%
+  filter(familiarity == "I was not familiar with this game")
+
+
+#recode variables
+
+
+data_recoded = data_gathered %>%
+  mutate(
+    condition = recode(condition, "experimental_switch"="experimental", "control_switch"="control")
+  )
                                
 
 
@@ -181,48 +180,60 @@ Data preparation following the analysis plan.
 
 
 ```{r include=T}
-# ###Analysis
-# 
-# 
-# #calculate and see propotions
-# 
-# table <- with(
-#   data_recoded,
-#   table(switch, condition))
-# 
-# 
-# ###table 
-# 
-# #Cohen's h test and Fisher's exact test
-# 
+###Analysis
+
+
+#calculate and see propotions
+
+table <- with(
+  data_recoded,
+  table(correctjustification, condition))
+
+
+###table
+
+#Cohen's h test and Fisher's exact test
+
 # install.packages("pwr")
-# library(pwr)
-# 
-# h <- ES.h(
-#   (table["switch", "control"]/ 
-#      (table["switch", "control"]+ table["stay", "control"])),
-#   (table["switch", "experimental"]/
-#       (table["switch", "experimental"]+ table["stay", "experimental"]))
-# )
-#   
-# test <-  fisher.test(as.matrix(table))
-# 
-# table
-# h
-# test
+library(pwr)
 
-# ggplot(data = data_recoded, aes(x = condition)) + geom_bar(aes(fill = switch), position = "dodge") + labs(x = "Condition")
 
+h <- ES.h(
+  (table["correct", "control"]/
+     (table["correct", "control"] + table["incorrect", "control"])),
+  (table["correct", "experimental"]/
+      (table["correct", "experimental"]+ table["incorrect", "experimental"]))
+)
+
+test <-  fisher.test(as.matrix(table))
+
+table
+h
+test
+
+# Plots of results
+
+library(ggplot2)
+
+#Plot from the replication study
+
+ggplot(data = data_recoded, aes(x = condition, y=100*(correctjustification == "correct"))) + geom_bar(stat="summary", fun.y=mean) + labs(title = "Replication study results", x = "Condition", y = "Percentage correct (%)") + ylim(0, 100) +
+  scale_x_discrete(breaks=c("control", "experimental"),
+                          labels=c("Control", "Experimental"))
+
+#Plot from the original study
+
+original = data.frame(Condition=c("A","B"),
+                      Percentage=c(3, 38))
+
+ggplot(data=original, aes(x=Condition, y=Percentage)) +
+       geom_bar(stat="identity") +
+         scale_x_discrete(breaks=c("A", "B"),
+                          labels=c("Control", "Experimental")) + ylim(0, 100) +
+       labs(title = "Original study results", x = "Condition", y = "Percentage correct (%)")
 
 ```
 
-![A helpful table]( images/table.png)
-
-![Original results]( images/originalresults.png)
-
-![Pilot A results]( images/pilotaresults.png)
-
-This definitively falsifies the original study's research claims.
 
 
 
@@ -252,7 +263,7 @@ Add open-ended commentary (if any) reflecting (a) insights from follow-up explor
 
 ![ Experimental group instructions]( images/experimentalinstructions.png)
   
-##Appendix C: Email to Authors
+
   
   
   
