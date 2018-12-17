@@ -21,9 +21,6 @@ Link to the original paper: https://github.com/psych251/krauss2003/blob/master/o
 
 Link to the Qualtrics survey: https://stanforduniversity.qualtrics.com/jfe/form/SV_beA2tfPyXz83Otv
 
-Link to preregistration:
-https://osf.io/n3abr/
-
 ##Introduction
 
 My PhD research focuses on the question of how humans should assign probabilities in various contexts, all with the hope to inform practical interventions to improve human reasoning. Studies show that the so-called "Monty Hall problem" is one context where humans frequently assign incorrect probabilities. This is an important context since it tests one's capacity to reason properly about likelihoods, a capacity which is central to reasoning about many topics in scientific, medical and everyday settings. Consequently, this paper hopes to partially replicate a promising procedure (experiment 1) for inculcating correct reasoning about the Monty Hall problem.
@@ -41,11 +38,11 @@ Participants will be recruited via Amazon Mechanical Turk.
 
 For two groups with proportions of 3% and 38%:
 
-- 38 respondents are needed to achieve 80% power (with respondents evenly allocated between groups)
+- 38 units are needed to achieve 80% power (with units evenly allocated between groups)
 
-- 46 respondents are needed to achieve 90% power (with respondents evenly allocated between groups)
+- 46 units are needed to achieve 90% power (with units evenly allocated between groups)
 
-- 58 respondents are needed to achieve 95% power (with respondents evenly allocated between groups)
+- 58 units are needed to achieve 95% power (with units evenly allocated between groups)
 
 
 ###Planned Sample
@@ -63,6 +60,8 @@ The pre-test approach will ask participants to indicate whether they are familia
 The post-test approach asks participants to indicate whether they are familiar with the Monty Hall through the instructions in appendix A or B. In particular, the last item on the instructions asks participants to "Please also tell us if you were already familiar with this game... and knew what the correct answer should be" 
 
 The post-test approach can avoid the earlier source of bias.
+
+A power analysis suggests that a sample of 38 people is necessary to detect the original effect with 80% power. A sample of 50 people has been planned to accommodate the possibility that some participants may have prior problem familiarity or may make errors which require them to be excluded from the final data analysis.
 
 
 ###Materials
@@ -97,12 +96,13 @@ Such assignments could be comprehensibly derived in two ways:
 
 The justifications will be extracted to a separate Excel file where justifications will be coded as correct or incorrect, all while being blind to which justifications are from the experimental or control conditions. The coding will then be transferred back to the main analysis dataframe. This may yield distinct proportions of correct justifications for the experimental and control conditions.
 
-Following the original study's protocol, the difference between such proportions will be measured using Cohen's h and statistical significance will be calculated using Fisher's exact test. Cohen's h is then the key statistic of interest for this replication.
+Following the original study's protocol, the difference between such proportions will be measured using Cohen's h and statistical significance will be calculated using Fisher's exact test.
 
 
 ###Differences from Original Study
 
 There are several salient differences between this replication study and the original experiment:
+
 
 Pictorial justifications: In the original study, participants were allowed to visually represent their justifications for their responses in various formats, such as drawings of doors. For technical reasons, this study will not enable participants to draw such pictures, but it is expected that this should have a negligible impact on the proportion of correct justifications given or how they are coded.
 
@@ -113,17 +113,13 @@ Coding of correct justifications: Unlike the previous study, a different coder (
 
 ### Methods Addendum (Post Data Collection)
 
-The actual methodology of this study departed from the initial design plan in several ways concern data collection.  
+<!-- You can comment this section out prior to final report with data collection. -->
 
-Only three inidividuals responded to the online survey during the first three days when the initial plan was executed. This was too slow. It is not certain why so few people replied, but in an attempt to increase the number of respondents, the task qualifications were removed. In particular, the task qualifications on MTurk were removed so that the task was visible to people aside from just US high school graduates or those who indicated no prior familiarity with the problem.
+<!-- #### Actual Sample -->
+<!--   Sample size, demographics, data exclusions based on rules spelled out in analysis plan -->
 
-Instead, participants merely indicated their familiarity with the Monty Hall problem on the survey form and were consequently excluded from analysis.
-
-Due to resource limitations, the study then sampled only 42 participants, but only 19 of these both passed the attention check and indicated that they were not already familiar with the problem.
-
-The resulting data was then unevenly distributed between the control and experimental conditions: the control condition had 8 valid responses and the experimental condition had 11.
-
-Consequently, the actual data collection featured a small sample size and more uneven distribution of data than initially planned.
+<!-- #### Differences from pre-data collection methods plan -->
+<!--   Any differences from what was described as the original plan, -->
 
 
 ##Results
@@ -131,22 +127,25 @@ Consequently, the actual data collection featured a small sample size and more u
 
 ### Data preparation
 
+Data preparation following the analysis plan.
 
 	
 ```{r include=T}
 ###Data Preparation
 
-# Loading the anonymized data (with coding about correct justifications added in the original datafile)
+#load data
 
-dataedit <- read.csv("C:/Users/john-/krauss2003/data/anonymizedfinaldata.csv", comment.char="#")
+dataedit <- read.csv("C:/Users/john-/krauss2003/data/pilotBanon.csv", comment.char="#")
 
+#tidy data, if neccesary
 
-#Installing and loading relevant packages
+#install packages with
 
 # install.packages("tidyverse")
 library("tidyverse")
+library("plyr")
 
-# Renaming columns in datafile to shorter variables titles
+# rename columns
 
 data_renamed = dataedit %>% dplyr::rename(
   experimental_switch = What.should.the.contestant.therefore.do.,
@@ -156,7 +155,7 @@ data_renamed = dataedit %>% dplyr::rename(
 
 
 
-#Removing missing values and excluding people who failed the attention check or were familiar with the game
+#remove missing values and people who failed the attention check or were familiar with the game
 
 data_gathered = data_renamed %>% gather(condition, switch, c(experimental_switch, control_switch)) %>%
   filter(switch!="") %>%
@@ -165,11 +164,13 @@ data_gathered = data_renamed %>% gather(condition, switch, c(experimental_switch
   filter(familiarity == "I was not familiar with this game")
 
 
-#Recoding variables so the meaning of the values is clearer
+#recode variables
 
 
 data_recoded = data_gathered %>%
-  mutate(condition = recode(condition, "experimental_switch"="experimental", "control_switch"="control"))
+  mutate(
+    condition = recode(condition, "experimental_switch"="experimental", "control_switch"="control")
+  )
                                
 
 
@@ -182,49 +183,45 @@ data_recoded = data_gathered %>%
 ###Analysis
 
 
-#Calculating the proportions of correct justifications given in the control and experimental conditions given
+#calculate and see propotions
 
 table <- with(
   data_recoded,
   table(correctjustification, condition))
 
 
-#Calculating Cohen's h test
+###table
+
+#Cohen's h test and Fisher's exact test
 
 # install.packages("pwr")
 library(pwr)
 
 
-# h <- ES.h(
-#   (table["correct", "control"]/
-#      (table["correct", "control"] + table["incorrect", "control"])),
-#   (table["correct", "experimental"]/
-#       (table["correct", "experimental"] + table["incorrect", "experimental"]))
-# )
-
-## Note: ES.h cannot calculate the h when two proportions of 0% are given (as is the case in this study).Consequently, the h value is 0 given that there is no difference, but this value was not computed via the above code.
-
-#Calculating the p value with Fisher's exact test
+h <- ES.h(
+  (table["correct", "control"]/
+     (table["correct", "control"] + table["incorrect", "control"])),
+  (table["correct", "experimental"]/
+      (table["correct", "experimental"]+ table["incorrect", "experimental"]))
+)
 
 test <-  fisher.test(as.matrix(table))
 
-# Displaying results from the above calculations
-
 table
-# h -- commented out since h cannot be calculated in this case
+h
 test
 
 # Plots of results
 
 library(ggplot2)
 
-#Plot of the percentage of correct justifications between the conditions -- from the replication study
+#Plot from the replication study
 
 ggplot(data = data_recoded, aes(x = condition, y=100*(correctjustification == "correct"))) + geom_bar(stat="summary", fun.y=mean) + labs(title = "Replication study results", x = "Condition", y = "Percentage correct (%)") + ylim(0, 100) +
   scale_x_discrete(breaks=c("control", "experimental"),
                           labels=c("Control", "Experimental"))
 
-#The corresponding plot from the original study
+#Plot from the original study
 
 original = data.frame(Condition=c("A","B"),
                       Percentage=c(3, 38))
@@ -235,8 +232,6 @@ ggplot(data=original, aes(x=Condition, y=Percentage)) +
                           labels=c("Control", "Experimental")) + ylim(0, 100) +
        labs(title = "Original study results", x = "Condition", y = "Percentage correct (%)")
 
-
-
 ```
 
 
@@ -244,111 +239,19 @@ ggplot(data=original, aes(x=Condition, y=Percentage)) +
 
 ###Exploratory analyses
 
-Exploratory analyses were conducted to see whether the experimental intervention had a significant effect on the number of correct decisions to switch.
-
-
-```{r include=T}
-###Analysis
-
-
-#Plot of correct decisions to switch from the original study
-
-original = data.frame(Condition=c("A","B"),
-                      Percentage=c(21, 59))
-
-ggplot(data=original, aes(x=Condition, y=Percentage)) +
-       geom_bar(stat="identity") +
-         scale_x_discrete(breaks=c("A", "B"),
-                          labels=c("Control", "Experimental")) + ylim(0, 100) +
-       labs(title = "Original study results", x = "Condition", y = "Percentage switch (%)")
-
-
-#Data on switching
-
-table2 <- with(
-  data_recoded,
-  table(switch, condition))
-
-h <- ES.h(
-  (table2["switch", "control"]/
-     (table2["switch", "control"] + table2["stay", "control"])),
-  (table2["switch", "experimental"]/
-      (table2["switch", "experimental"] + table2["stay", "experimental"]))
-)
-
-test2 <-  fisher.test(as.matrix(table2))
-
-# Table displaying counts of switching vs. staying among the conditions
-
-table2
-
-# Proportions displaying differences in switching between the groups
-
-  (table2["switch", "control"]/
-     (table2["switch", "control"] + table2["stay", "control"]))
-
-  (table2["switch", "experimental"]/
-      (table2["switch", "experimental"] + table2["stay", "experimental"]))
-
-ggplot(data = data_recoded, aes(x = condition, y=100*(switch == "switch"))) + geom_bar(stat="summary", fun.y=mean) + labs(title = "Replication study results", x = "Condition", y = "Percentage switch (%)") + ylim(0, 100) +
-  scale_x_discrete(breaks=c("control", "experimental"),
-                          labels=c("Control", "Experimental"))
-
-# Test of statistical significance between the groups
-
-test2
-
-# Data on experimental manipulation:
-
-table3 <- with(
-  data_renamed,
-  table(data_renamed$....if.she.he.switches.to.the.last.remaining.door...In.____.out.of.3.cases..Fill.in.the.blank.below., familiarity))
-
-table3
-
-```
-
+Any follow-up analyses desired (not required).
 
 
 
 ## Discussion
 
-
 ### Summary of Replication Attempt
 
-
-This study did not replicate the key result of experiment 1 reported by Krauss and Wang (2003). In the original study, 38% of the participants in the experimental condition reportedly provided the correct justification for why one should switch: that is, they both sepecified the probability that switching would win the prize and they "comprensible derived" this justification from counting outcomes or applying Bayes's theorem (Krauss & Wang, 2003, 11). In constrast, only 3% of the control condition provided the correct justifications as such. The results were statistically significant (p <0.001) and Cohen's h was .98.
-
-However, in this study, none of the respondents in the experimental condition nor the control condition provided the correct justifications.
-
+Open the discussion section with a paragraph summarizing the primary result from the confirmatory analysis and the assessment of whether it replicated, partially replicated, or failed to replicate the original result.  
 
 ### Commentary
 
-In this section, I will reflect on the lessons learned from the study, as well as what may be the implications of the failure to replicate the previous results. (Note that no objections or challenges were raised from the author of the original study, so none are discussed here.)
-
-One lesson is that, at least among MTurk participants, the Monty Hall problem is fairly well-known. Out of the 40 participants who passed the attention check, 21 indicated prior familarity with the Monty Hall problem, although 19 did not.
-
-Of course, such familarity was anticipated and a custom qualification was created to rule out such participants, but the second lesson is that the custom qualification did not work well in this context. We can be sure that the custom qualification did not work well, since another task was placed on MTurk which featured only the custom qualification, and the task uptake was poor until the custom qualification was removed. This is unlikely to be an error in the creation or display of the qualification, since both myself and another person[Erin] completed the qualification multiple times before running it live, and it worked for other workers. Instead, it may be that the qualification dissuaded participants from carrying on with the HIT, perhaps because participants saw that: 
-i) they needed to put the effort in to complete three qualifying questions, 
-ii) it's not certain that they will qualify for the task after making that effort, and 
-iii) they would only gain $0.97 even if they did qualify and complete the task
-
-For these reasons, participants may have thought that the task and the qualifying test were not worth their time, and that they should focus elsewhere. So that is one possible explanation for why the qualification did not work well, but there may be others. And of course, if this explanation is correct, then custom qualifications may still be useful in cases where workers have stronger incentives to see whether they qualify, perhaps by paying more for the HIT or making it appear attractive in other ways.
-
-A third lesson is that the creation of custom qualifications very difficult and unobvious, at least for those without programming backgrounds. Multiple sources were consulted prior to creating the qualification, and many of MTurk's instructions are utterly obscure for those without the relevant programming backgrounds. Future courses may wish to provide resources for students aiming to create such qualifications (such as an walkthrough guide with examples), and I would be happy to help if that would be useful.
-
-Those are the key lessons learned from this replication study.
-
-However, the question remains as to what the failure to replicate previous results means. There are two sets of possible implications.
-
-One set concerns limitations of the replication study. Perhaps, for example, the study failed to replicate the original result because of these aspects:
-- The replication sample was small and underpowered
-- The original instructions were in a different language which could have guided participants differently
-- MTurk workers may have been less attentive or competent than participants in the original study, especially since workers may be aiming to quickly complete the task to receive a small pay-off
-- Authors of the original and replication studies could have coded justifications as correct or incorrect in different ways, with some being more or less lenient
-
-The other set of possible implications concerns the original study. It is possible, albeit not necessarily probable, that the study reported an effect which does not exist in the population of interest. This could happen for various reasons. One of these is publication bias and the file-drawer problem which inflate the rate of false positives in the published literature, and it might be that this is one such false positive. Additionally, the original study may have had various methodological features which hinder it from replicating (see examples casually discussed [here](https://babieslearninglanguage.blogspot.com/2018/12/how-to-run-study-that-doesnt-replicate.html)). For example, the original study utilized a between-subjects design. As a result, the outcomes of interest may to some extent be attributable to irrelevant variance or noise among conditions. In this sense, between-subjets designs are less likely to replicate compared to within-subjects designs.
-
+Add open-ended commentary (if any) reflecting (a) insights from follow-up exploratory analysis, (b) assessment of the meaning of the replication (or not) - e.g., for a failure to replicate, are the differences between original and present study ones that definitely, plausibly, or are unlikely to have been moderators of the result, and (c) discussion of any objections or challenges raised by the current and original authors about the replication attempt.  None of these need to be long.
 
 
 ##Appendix A: Control group instructions
